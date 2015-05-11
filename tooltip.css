@@ -1,0 +1,36 @@
+a {
+	color: red;
+}
+
+body {
+	padding-top: 50px;
+}
+
+[data-title] {
+	color: blue;
+	position: relative;
+}
+
+[data-title]:hover:before {
+	content: attr(data-title);
+	background: yellow;
+	color: brown;
+	position: absolute;
+	padding: 2px 5px;
+	border-radius: 4px;
+	bottom: 35px;
+	white-space: nowrap;
+	z-index: 1;
+}
+
+[data-title]:hover:after {
+	content: "";
+	display: block;
+	width: 0px;
+	height: 0px;
+	border: solid 20px transparent;
+	border-top-color: yellow;
+	position: absolute;
+	bottom: 5px;
+	left: 0;
+}
