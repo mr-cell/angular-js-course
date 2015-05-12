@@ -35,7 +35,7 @@ function calculateBrutto(e) {
 	var vat = parseFloat(vatElem.val());
 	var brutto = (netto * vat / 100) + netto;
 	if(isNaN(brutto)) {
-		bruttoElem.val();
+		bruttoElem.val('0');
 	} else {
 		bruttoElem.val(brutto.toFixed(2));
 	}	
@@ -54,7 +54,7 @@ function calculateSumaBrutto(e) {
 	var brutto = (netto * vat / 100) + netto;
 	var sumaBrutto = brutto * amount;
 	if(isNaN(sumaBrutto)) {
-		sumaBruttoElem.val();
+		sumaBruttoElem.val('0');
 	} else {
 		sumaBruttoElem.val(sumaBrutto.toFixed(2));
 	}
@@ -73,7 +73,7 @@ function calculateSumaTotal(e) {
 	});
 
 	if(isNaN(totalSum)) {
-		totalSumElem.val();
+		totalSumElem.val('0');
 	} else {
 		totalSumElem.val(totalSum.toFixed(2));
 	}
@@ -95,11 +95,8 @@ function addRow(e) {
 }
 
 function clearRow(row) {
+	row.find('input').val('');
 	row.find('input[name=facture\\.details\\.amount]').val('1');
-	row.find('input[name=facture\\.details\\.netto]').val('');
-	row.find('input[name=facture\\.details\\.vat]').val('');
-	row.find('input[name=facture\\.details\\.brutto]').val('');
-	row.find('input[name=facture\\.details\\.sumbr]').val('');
 }
 
 function deleteRow(e) {

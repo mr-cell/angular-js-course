@@ -4,3 +4,5 @@
 $('table').on('click', 'tr', function(e) {...});
 
 Event jest ustawiony na table. wiersze sa dodawane dynamiczne i jesli zostanie kliknieta tabela, jquery sprawdzi, czy click nastapil na elemencie 'tr' - jesli tak, to uzyje jego jako $(this)! Niezłe!!
+
+3. Można nazywać obiekty jquery np. var $table = $('table'); - wtedy od razu wiadomo, ze mamy do czynienia z obiektem jquery
