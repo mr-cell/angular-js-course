@@ -8,12 +8,23 @@ $(document).ready(function() {
 });
 
 function bindEvents() {
-	$('input[name=facture\\.details\\.amount]').on('change keyup', calculateSumaBrutto);
-	$('input[name=facture\\.details\\.netto]').on('change keyup', calculateBrutto);
-	$('select[name=facture\\.details\\.vat]').on('change', calculateBrutto);
+	var amounts = $('input[name=facture\\.details\\.amount]');
+	var nettos = $('input[name=facture\\.details\\.netto]');
+	var vats = $('select[name=facture\\.details\\.vat]');
+	var bruttos = $('input[name=facture\\.details\\.brutto]');
+	var sumBruttos = $('input[name=facture\\.details\\.sumbr]');
 
-	$('input[name=facture\\.details\\.brutto]').on('change', calculateSumaBrutto);
-	$('input[name=facture\\.details\\.sumbr]').on('change', calculateSumaTotal);
+	amounts.off('change keyup');
+	nettos.off('change keyup');
+	vats.off('change');
+	bruttos.off('change');
+	sumBruttos.off('change');
+
+	amounts.on('change keyup', calculateSumaBrutto);
+	nettos.on('change keyup', calculateBrutto);
+	vats.on('change', calculateBrutto);
+	bruttos.on('change', calculateSumaBrutto);
+	sumBruttos.on('change', calculateSumaTotal);
 }
 
 function calculateBrutto(e) {
@@ -68,7 +79,7 @@ function calculateSumaTotal(e) {
 	}
 }
 
-function addRow() {
+function addRow(e) {
 	var lastRow = $('table#facture-details tbody tr:last');
 	var factureDetails = $('table#facture-details tbody');
 
@@ -80,6 +91,7 @@ function addRow() {
 	addedRow.find('td:first').html(lp + '.');
 	clearRow(addedRow);
 	bindEvents();
+	e.preventDefault();
 }
 
 function clearRow(row) {
@@ -90,7 +102,7 @@ function clearRow(row) {
 	row.find('input[name=facture\\.details\\.sumbr]').val('');
 }
 
-function deleteRow() {
+function deleteRow(e) {
 	var lastRow = $('table#facture-details tbody tr:last');
 	if($('table#facture-details tbody tr').length > 1) {
 		lastRow.remove();
@@ -100,4 +112,5 @@ function deleteRow() {
 	} else {
 		clearRow(lastRow);
 	}
+	e.preventDefault();
 }
