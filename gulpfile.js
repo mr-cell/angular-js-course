@@ -3,8 +3,9 @@ var sass = require('gulp-sass');
 var jshint = require('gulp-jshint');
 var jade = require('gulp-jade');
 
-gulp.task('default', ['sass'], function() {
+gulp.task('default', ['sass', 'jade'], function() {
 	gulp.watch('./scss/*.scss', ['sass']);
+	gulp.watch('*.jade', ['jade']);
 });
 
 gulp.task('sass', function() {
